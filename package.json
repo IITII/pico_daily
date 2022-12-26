@@ -1,0 +1,20 @@
+{
+  "name": "pico_daily",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node App.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "cloudscraper": "^4.6.0",
+    "dayjs": "^1.11.7",
+    "log4js": "^6.7.1",
+    "request": "^2.88.2"
+  }
+}
