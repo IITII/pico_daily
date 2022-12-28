@@ -13,6 +13,8 @@ const pico = {
   cookies: process.env.PICO || [
 
   ],
+  // 今天签到了吗？
+  checked: './checked.txt',
 }
 
 const config = {
@@ -47,6 +49,8 @@ if (proxy) {
     port: proxy.split(':')[1],
   }
 }
+
+config.checked = path.resolve(__dirname, config.checked)
 
 function mkdir(dir) {
   if (!fs.existsSync(dir)) {

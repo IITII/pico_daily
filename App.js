@@ -9,11 +9,16 @@ const logger = require('./config/log4js.js')
 const {list_by_user, list_with_top, comment_create_axios} = require('./libs/pico.js')
 const dayjs = require('dayjs')
 const {sleep} = require('./libs/utils.js')
+const {get_cache, flush_cache} = require('./libs/cache.js')
 
 async function main(filter = /^\d+月\d+日每日一题领积分/) {
   logger.info('Start to run...')
   let posts, today, item_id, post_detail, comments, comment_detail, comment_res, random_sleep
   today = `${dayjs().month() + 1}月${dayjs().date()}日`
+  if (get_cache() === today) {
+    logger.info('Already done today.')
+    return
+  }
   for (const cookie of config.cookies) {
     random_sleep = Math.floor(Math.random() * 1000 * 60 * config.random_wait)
     logger.info(`Sleep ${random_sleep / 1000} seconds before next request`)
@@ -56,6 +61,8 @@ async function main(filter = /^\d+月\d+日每日一题领积分/) {
       comment_res = await comment_create_axios(cookie, item_id, comment_detail)
       logger.info(`Commented: ${comment_detail} for post: ${item_id} ${posts.content.name}`)
       logger.debug(`Comment result:`, comment_res)
+      flush_cache(today)
+      logger.info(`Flush cache: ${today}`)
     }
   }
 }

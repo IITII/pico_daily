@@ -22,6 +22,7 @@ dict.js
 *.0x
 cache.txt
 *.bak
+checked.txt
 
 # Runtime data
 pids
