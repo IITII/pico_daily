@@ -12,7 +12,7 @@ if (fs.existsSync(CacheFile)) {
   try {
     const rawText = fs.readFileSync(CacheFile).toString(),
       arr = rawText.split('\n').filter(x => !!x).map(_ => _.trim())
-    cache = new Set(arr)[0]
+    cache = [...new Set(arr)][0]
   } catch (e) {
     logger.warn(`Cache init failed: ${e.message}`)
   }
