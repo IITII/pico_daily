@@ -34,3 +34,6 @@
 * 找到 `Request Headers` 中的 `cookie` 字段
 * 将其复制到 `config.js` 中的 `cookies` 字段
 * 保存
+
+[wiki](https://github.com/IITII/pico_daily/wiki)
+
